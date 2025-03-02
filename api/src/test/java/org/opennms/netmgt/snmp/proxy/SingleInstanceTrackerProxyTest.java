@@ -21,22 +21,15 @@
  */
 package org.opennms.netmgt.snmp.proxy;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.opennms.netmgt.snmp.*;
 
 import java.util.Collections;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.opennms.netmgt.snmp.GatheringTracker;
-import org.opennms.netmgt.snmp.SingleInstanceTracker;
-import org.opennms.netmgt.snmp.SnmpInstId;
-import org.opennms.netmgt.snmp.SnmpObjId;
-import org.opennms.netmgt.snmp.SnmpResult;
-import org.opennms.netmgt.snmp.SnmpValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.mock;
 
 public class SingleInstanceTrackerProxyTest {
     private GatheringTracker gatherer = new GatheringTracker();
@@ -44,7 +37,7 @@ public class SingleInstanceTrackerProxyTest {
     private SnmpInstId instance = new SnmpInstId(2);
     private SingleInstanceTracker tracker = new SingleInstanceTracker(base, instance, gatherer);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // Verify the generated request
         WalkRequest expectedRequest = new WalkRequest(base);

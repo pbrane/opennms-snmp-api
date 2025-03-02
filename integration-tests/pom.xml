@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.opennms.core</groupId>
     <artifactId>org.opennms.core.snmp</artifactId>
-    <version>34.0.0-SNAPSHOT</version>
+    <version>0.0.1</version>
 	 <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -21,7 +21,7 @@
           <instructions>
 <!--            <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>-->
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Version>${snmp.project.version}</Bundle-Version>
           </instructions>
         </configuration>
       </plugin>
@@ -36,7 +36,7 @@
     <dependency>
       <groupId>org.opennms.core.snmp</groupId>
       <artifactId>org.opennms.core.snmp.implementations.snmp4j</artifactId>
-      <version>${project.version}</version>
+      <version>${snmp.project.version}</version>
       <scope>test</scope>
     </dependency>
 <!--
@@ -50,7 +50,7 @@
     <dependency>
       <groupId>org.opennms.core.snmp</groupId>
       <artifactId>org.opennms.core.snmp.implementations.mock</artifactId>
-      <version>${project.version}</version>
+      <version>${snmp.project.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

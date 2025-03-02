@@ -21,31 +21,24 @@
  */
 package org.opennms.netmgt.snmp.proxy;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.opennms.netmgt.snmp.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.opennms.netmgt.snmp.ColumnTracker;
-import org.opennms.netmgt.snmp.GatheringTracker;
-import org.opennms.netmgt.snmp.SnmpInstId;
-import org.opennms.netmgt.snmp.SnmpObjId;
-import org.opennms.netmgt.snmp.SnmpResult;
-import org.opennms.netmgt.snmp.SnmpValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.mock;
 
 public class ColumnTrackerProxyTest {
     private GatheringTracker gatherer = new GatheringTracker();
     private SnmpObjId base = SnmpObjId.get(".1.3.6.1.2.1");
     private ColumnTracker tracker = new ColumnTracker(gatherer, base);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // Verify the generated request
         WalkRequest expectedRequest = new WalkRequest(base);

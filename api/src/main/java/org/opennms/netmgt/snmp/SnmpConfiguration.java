@@ -21,7 +21,7 @@
  */
 package org.opennms.netmgt.snmp;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
  * Represents a base class for SnmpConfiguration of agents, ranges and defaults

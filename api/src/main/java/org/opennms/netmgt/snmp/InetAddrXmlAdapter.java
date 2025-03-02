@@ -23,7 +23,7 @@ package org.opennms.netmgt.snmp;
 
 import java.net.InetAddress;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * InetAddresssXmlAdapter

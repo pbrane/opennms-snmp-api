@@ -21,7 +21,7 @@
  */
 package org.opennms.netmgt.snmp;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class SnmpInstIdXmlAdapter extends XmlAdapter<String, SnmpInstId> {
 

@@ -23,8 +23,8 @@ package org.opennms.netmgt.snmp;
 
 import java.net.InetAddress;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SnmpAgentConfigTest {
 
@@ -33,16 +33,16 @@ public class SnmpAgentConfigTest {
         SnmpAgentConfig config = new SnmpAgentConfig();
         SnmpAgentConfig config2 = new SnmpAgentConfig();
 
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
 
         fillAll(config);
-        Assert.assertFalse(config.equals(config2));
-        Assert.assertFalse(config.hashCode() == config2.hashCode());
+        assertNotEquals(config, config2);
+        assertNotEquals(config.hashCode(), config2.hashCode());
 
         fillAll(config2);
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
     }
 
     /**
@@ -60,25 +60,25 @@ public class SnmpAgentConfigTest {
         config.setAddress(InetAddress.getByName("127.0.0.1"));
         config.setProxyFor(InetAddress.getByName("127.0.0.1"));
         SnmpAgentConfig  config2 = SnmpAgentConfig.parseProtocolConfigurationString(config.toProtocolConfigString());
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
 
         config.setVersion(3);
         config2 = SnmpAgentConfig.parseProtocolConfigurationString(config.toProtocolConfigString());
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
 
         config.setAuthPassPhrase(null);
         config.setPrivPassPhrase(null);
         config2 = SnmpAgentConfig.parseProtocolConfigurationString(config.toProtocolConfigString());
         // config2 will have the default PrivPassphrase and such, so these will *not* actually equal each other
-        Assert.assertFalse(config.equals(config2));
-        Assert.assertFalse(config.hashCode() == config2.hashCode());
+        assertNotEquals(config, config2);
+        assertNotEquals(config.hashCode(), config2.hashCode());
         config2.setAuthPassPhrase(null);
         config2.setPrivPassPhrase(null);
         // now they should match
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
 
         fillAll(config);
         // toProtocolConfigurationString does not print all set value,
@@ -89,8 +89,8 @@ public class SnmpAgentConfigTest {
         config2 = SnmpAgentConfig.parseProtocolConfigurationString(config.toProtocolConfigString());
         config2.setReadCommunity(null);
         config2.setWriteCommunity(null);
-        Assert.assertEquals(config, config2);
-        Assert.assertEquals(config.hashCode(), config2.hashCode());
+        assertEquals(config, config2);
+        assertEquals(config.hashCode(), config2.hashCode());
     }
 
     private void fillAll(SnmpAgentConfig config) {
@@ -119,13 +119,13 @@ public class SnmpAgentConfigTest {
     public void canConvertToAndFromProtocolConfigString() throws Exception {
         SnmpAgentConfig config = new SnmpAgentConfig();
         String protocolConfigString = "{\"snmp\":{\"address\":null,\"proxyFor\":null,\"port\":\"161\",\"timeout\":\"3000\",\"retries\":\"0\",\"max-vars-per-pdu\":\"10\",\"max-repetitions\":\"2\",\"max-request-size\":\"65535\",\"version\":\"1\",\"security-level\":\"1\",\"security-name\":\"opennmsUser\",\"auth-passphrase\":\"0p3nNMSv3\",\"auth-protocol\":\"MD5\",\"priv-passphrase\":\"0p3nNMSv3\",\"priv-protocol\":\"DES\",\"context-name\":null,\"engine-id\":null,\"context-engine-id\":null,\"enterprise-id\":null,\"read-community\":\"public\",\"write-community\":\"private\"}}";
-        Assert.assertEquals(protocolConfigString, config.toProtocolConfigString());
-        Assert.assertEquals(config, SnmpAgentConfig.parseProtocolConfigurationString(protocolConfigString));
+        assertEquals(protocolConfigString, config.toProtocolConfigString());
+        assertEquals(config, SnmpAgentConfig.parseProtocolConfigurationString(protocolConfigString));
     }
 
     @Test
     public void canConvertToAndFromMap() {
         SnmpAgentConfig config = new SnmpAgentConfig();
-        Assert.assertEquals(config, SnmpAgentConfig.fromMap(config.toMap()));
+        assertEquals(config, SnmpAgentConfig.fromMap(config.toMap()));
     }
 }

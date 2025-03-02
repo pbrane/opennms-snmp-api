@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.opennms.core</groupId>
     <artifactId>org.opennms.core.snmp</artifactId>
-    <version>34.0.0-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opennms.core.snmp</groupId>
@@ -13,6 +13,18 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+<!--        <version>${maven.compiler.plugin.version}</version>-->
+        <version>3.8.1</version>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+          <encoding>UTF-8</encoding>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>
@@ -20,7 +32,7 @@
           <instructions>
 <!--            <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>-->
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Version>${snmp.project.version}</Bundle-Version>
             <Export-Package>
               org.opennms.netmgt.snmp.snmp4j,
               <!-- TODO: Remove this export after removing direct dependencies on SNMP4J -->
@@ -51,7 +63,7 @@
     <dependency>
       <groupId>org.opennms.core</groupId>
       <artifactId>org.opennms.core.sysprops</artifactId>
-      <version>${project.version}</version>
+      <version>${opennms.project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.opennms.core</groupId>

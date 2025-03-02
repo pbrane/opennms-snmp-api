@@ -21,24 +21,24 @@
  */
 package org.opennms.netmgt.snmp;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import org.junit.Test;
 
 public class SnmpUtilsTest {
 
 	/**
-	 * This test is designed to test the issues in bug NMS-5281.
-	 * 
-	 * @see http://issues.opennms.org/browse/NMS-5281
-	 * 
-	 * @throws UnsupportedEncodingException
-	 */
+     * This test is designed to test the issues in bug NMS-5281.
+     *
+     * @see <a href="http://issues.opennms.org/browse/NMS-5281">...</a>
+     *
+     * @throws UnsupportedEncodingException
+     */
 	@Test
 	public void testGetProtoCounter63Value() {
 		for (byte[] bytes : new byte[][] {
@@ -51,7 +51,7 @@ public class SnmpUtilsTest {
 			// One
 			{ 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1 }
 		}) {
-			assertNotNull(Arrays.toString(bytes), SnmpUtils.getProtoCounter63Value(bytes));
+			assertNotNull(Arrays.toString(bytes), String.valueOf(SnmpUtils.getProtoCounter63Value(bytes)));
 		}
 
 		for (byte[] bytes : new byte[][] {
@@ -74,7 +74,7 @@ public class SnmpUtilsTest {
 			// 64-bit value
 			{ (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff }
 		}) {
-			assertNull(Arrays.toString(bytes), SnmpUtils.getProtoCounter63Value(bytes));
+			assertNull(Arrays.toString(bytes), String.valueOf(SnmpUtils.getProtoCounter63Value(bytes)));
 		}
 	}
 }

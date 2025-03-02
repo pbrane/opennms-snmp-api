@@ -21,23 +21,23 @@
  */
 package org.opennms.netmgt.snmp;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.Test;
 
 public class AbstractSnmpValueTest {
 
 	/**
-	 * This test is designed to test the issues in bug NMS-5281.
-	 * 
-	 * @see http://issues.opennms.org/browse/NMS-5281
-	 * 
-	 * @throws UnsupportedEncodingException
-	 */
+     * This test is designed to test the issues in bug NMS-5281.
+     *
+     * @see <a href="http://issues.opennms.org/browse/NMS-5281">...</a>
+     *
+     * @throws UnsupportedEncodingException
+     */
 	@Test
 	public void testAllBytesDisplayable() throws UnsupportedEncodingException {
 		String[] strings = new String[4];
@@ -59,17 +59,17 @@ public class AbstractSnmpValueTest {
 
 		for (String string : strings) {
 			System.out.println(new String(hexStringToBytes(string)));
-			assertTrue(new String(hexStringToBytes(string), StandardCharsets.ISO_8859_1), AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(string)));
+			assertTrue(AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(string)), new String(hexStringToBytes(string), StandardCharsets.ISO_8859_1));
 		}
 	}
 
 	/**
-	 * This test is designed to test the issues in bug NMS-5281.
-	 * 
-	 * @see http://issues.opennms.org/browse/NMS-5281
-	 * 
-	 * @throws UnsupportedEncodingException
-	 */
+     * This test is designed to test the issues in bug NMS-5281.
+     *
+     * @see <a href="http://issues.opennms.org/browse/NMS-5281">...</a>
+     *
+     * @throws UnsupportedEncodingException
+     */
 	@Test
 	public void testStringWithAllBytesNotDisplayable() throws UnsupportedEncodingException {
 		String[] badStrings = new String[4];
@@ -87,20 +87,20 @@ public class AbstractSnmpValueTest {
 		badStrings[3] = "42656e61636872696368746967756e67209620546573746d656c64756e6720";
 
 		for (String string : badStrings) {
-			assertFalse(new String(hexStringToBytes(string), "Windows-1252"), AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(string)));
+			assertFalse(AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(string)), new String(hexStringToBytes(string), "Windows-1252"));
 		}
 	}
 
 	@Test
 	public void testHighIso8859CharDisplayable() throws UnsupportedEncodingException {
 		String highIso8859Char = "CF"; // Capital I with umlaut
-		assertTrue(new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"), AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)));
+		assertTrue(AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)), new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"));
 
 		highIso8859Char = "EF"; // Lowercase i with umlaut
-		assertTrue(new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"), AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)));
+		assertTrue(AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)), new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"));
 
 		highIso8859Char = "FF"; // Lowercase y with umlaut
-		assertTrue(new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"), AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)));
+		assertTrue(AbstractSnmpValue.allBytesDisplayable(hexStringToBytes(highIso8859Char)), new String(hexStringToBytes(highIso8859Char), "ISO-8859-1"));
 	}
 
 	private static byte[] hexStringToBytes(String hexString) {
