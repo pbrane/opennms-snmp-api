@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <groupId>org.opennms.core</groupId>
-    <artifactId>org.opennms.core.snmp</artifactId>
-    <version>0.0.1</version>
-	 <relativePath>../pom.xml</relativePath>
-  </parent>
+<!--  <parent>-->
+<!--    <groupId>org.opennms.core</groupId>-->
+<!--    <artifactId>org.opennms.core.snmp</artifactId>-->
+<!--    <version>0.0.1</version>-->
+<!--	 <relativePath>../pom.xml</relativePath>-->
+<!--  </parent>-->
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opennms.core.snmp</groupId>
   <artifactId>org.opennms.core.snmp.integration-tests</artifactId>
@@ -28,10 +28,15 @@
     </plugins>
   </build>
   <dependencies>
+    <!--    <dependency>-->
+    <!--      <groupId>org.opennms.core.snmp</groupId>-->
+    <!--      <artifactId>org.opennms.core.snmp.api</artifactId>-->
+    <!--      <scope>test</scope>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>org.opennms.core.snmp</groupId>
       <artifactId>org.opennms.core.snmp.api</artifactId>
-      <scope>test</scope>
+      <version>0.0.1</version>  <!-- Explicitly set -->
     </dependency>
     <dependency>
       <groupId>org.opennms.core.snmp</groupId>
@@ -39,18 +44,18 @@
       <version>${snmp.project.version}</version>
       <scope>test</scope>
     </dependency>
-<!--
-    <dependency>
-      <groupId>org.opennms.core.snmp</groupId>
-      <artifactId>org.opennms.core.snmp.implementations.joesnmp</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
--->
+    <!--
+        <dependency>
+          <groupId>org.opennms.core.snmp</groupId>
+          <artifactId>org.opennms.core.snmp.implementations.joesnmp</artifactId>
+          <version>${project.version}</version>
+          <scope>test</scope>
+        </dependency>
+    -->
     <dependency>
       <groupId>org.opennms.core.snmp</groupId>
       <artifactId>org.opennms.core.snmp.implementations.mock</artifactId>
-      <version>${snmp.project.version}</version>
+      <version>0.0.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -58,30 +63,35 @@
       <artifactId>org.opennms.core.test-api.snmp</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <scope>test</scope>
+      <version>33.4.0-jre</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
     <dependency>
       <groupId>org.awaitility</groupId>
       <artifactId>awaitility</artifactId>
+      <version>4.3.0</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.opennms.core.test-api</groupId>
-      <artifactId>org.opennms.core.test-api.xml</artifactId>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.opennms.core.test-api</groupId>-->
+<!--      <artifactId>org.opennms.core.test-api.xml</artifactId>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
+      <version>5.15.2</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.opennms</groupId>
-      <artifactId>opennms-dao-mock</artifactId>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.opennms</groupId>-->
+<!--      <artifactId>opennms-dao-mock</artifactId>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
   </dependencies>
 </project>
